@@ -1,0 +1,46 @@
+a.html
+
+<HTML>
+<HEAD>
+<TITLE>New Page 2 </TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+
+</HEAD>
+
+<BODY>
+<form name="Form1" method="Get" action="http://localhost:8080/examples/servlet/ChangeColour">
+<b><p>Colour<select name="colour" size="1">
+<option value="Red">Red</option>
+<option value="Green">Green</option>
+<option value="Blue">Blue</option>
+</select> <input type="submit" value="submit"> </p>
+</form>
+</b>
+
+
+</BODY>
+</HTML>
+import java.io.*;
+import javax.servlet.*;
+import java.util.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.WebServlet;
+@WebServlet ("/ChangeColour ")
+
+public class ChangeColour extends HttpServlet{
+
+	public void service(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+		PrintWriter pw=response.getWriter();
+    		response.setContentType("text/html"); 
+		String colour=request.getParameter("colour");
+		pw.println(colour);
+
+		if(colour.compareTo("Blue")==0)
+		  pw.println("<body bgcolor=#00FFFF>");
+		  else if(colour.compareTo("Red")==0)
+			     pw.println("<body bgcolor=#FF0000>");
+		  else pw.println("<body bgcolor=#008000>");
+	
+		pw.close();
+	}
+}
